@@ -1,0 +1,3 @@
+package com.example.daggersimmpleproject.receivers
+
+class MyNetworkChannel
