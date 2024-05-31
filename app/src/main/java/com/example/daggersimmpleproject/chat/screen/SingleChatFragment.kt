@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -22,7 +23,7 @@ class SingleChatFragment : Fragment() {
     @Inject
     lateinit var rxUtilsAbs: RxUtilsAbs
 
-    @Inject
+    @Inject lateinit var serviceFactory: SCPresenterFactory
     lateinit var scPresenter: ISCPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +43,8 @@ class SingleChatFragment : Fragment() {
         // check rxUtilsAbs is the same object as in MainFragment cos @Reusable
         println(rxUtilsAbs)
 
+        scPresenter = serviceFactory.create("chatId")
+
     }
 
     override fun onCreateView(
@@ -55,7 +58,10 @@ class SingleChatFragment : Fragment() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     Box(contentAlignment = Alignment.Center) {
-                        Text(text = "SingleChatFragment")
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Text(text = "SingleChatFragment")
+                            Text(text = scPresenter.getChatId())
+                        }
                     }
                 }
             }

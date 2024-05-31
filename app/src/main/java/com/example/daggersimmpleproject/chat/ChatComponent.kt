@@ -5,7 +5,6 @@ import com.example.daggersimmpleproject.AppComponent
 import com.example.daggersimmpleproject.utils.RxUtilsAbs
 import com.example.daggersimmpleproject.chat.screen.SingleChatFragmentSubcomponent
 import com.example.daggersimmpleproject.chat.screen.SCModule
-import com.example.daggersimmpleproject.chat.screen.SingleChatFragmentModule
 import dagger.Component
 import dagger.Subcomponent
 
@@ -20,7 +19,7 @@ interface ChatComponent {
 }
 
 @ChatScope
-@Subcomponent(modules = [ChatModule::class, SingleChatFragmentModule::class])
+@Subcomponent(modules = [ChatModule::class])
 interface ChatSubComponent {
     fun plusSCComponent(scModule: SCModule): SingleChatFragmentSubcomponent
 

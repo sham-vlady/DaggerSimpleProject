@@ -2,12 +2,19 @@ package com.example.daggersimmpleproject.chat.screen
 
 import android.content.Context
 import com.example.daggersimmpleproject.chat.IChatInteract
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedInject
 
-class SCPresenter(
+class SCPresenter @AssistedInject constructor(
     private val context: Context,
-    private val iChatInteract: IChatInteract
+    private val iChatInteract: IChatInteract,
+    @Assisted private val chatId: String
 ) : ISCPresenter {
-    // Implement necessary methods
+    override fun getChatId(): String {
+        return chatId
+    }
 }
 
-interface ISCPresenter
+interface ISCPresenter {
+    fun getChatId() : String
+}
